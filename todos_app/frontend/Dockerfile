@@ -2,15 +2,12 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-# add '/app/node_modules/.bin' to $PATH
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN chown -R appuser:appgroup /app
+USER appuser
 ENV PATH /app/node_modules/.bin:$PATH
-# install application dependencies
 COPY package*.json ./
 RUN npm install
-# RUN npm install react-scripts -g
-
-# copy app files
 COPY . .
-
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["react-scripts", "start"]
