@@ -10,7 +10,4 @@ COPY . .
 
 EXPOSE 3001
 
-# Add a health check endpoint to your server.js file
-RUN echo "app.get('/health', (req, res) => res.status(200).send('OK'));" >> server.js
-
 CMD ["node", "server.js"]
