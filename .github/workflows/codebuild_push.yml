@@ -34,8 +34,8 @@ jobs:
 
     - name: Build Docker Image
       run: |
-            docker build -t $FRONTEND_IMAGE_NAME:latest . -f ./todos_app/frontend/Dockerfile
-            docker build -t $BACKEND_IMAGE_NAME:latest . -f ./todos_app/backend/Dockerfile
+            cd ./todos_app/frontend/ && docker build -t $FRONTEND_IMAGE_NAME:latest . && cd ../../
+            cd ./todos_app/backend/ && docker build -t $BACKEND_IMAGE_NAME:latest . && cd ../../
 
     - name: Automatic Tagging of Releases
       id: increment-git-tag
