@@ -1,5 +1,5 @@
-kubectl apply -f ./agrocd_manifests/argo_namespace.yaml
-kubectl apply -n argocd -f ./agrocd_manifests/argocd_install.yaml
+kubectl apply -f ./argocd_manifests/argo_namespace.yaml
+kubectl apply -n argocd -f ./argocd_manifests/argocd_install.yaml
 sleep 10
 echo "your argocd password is:"
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
