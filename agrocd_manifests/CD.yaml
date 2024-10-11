@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todocd
+  namespace: argocd
+spec:
+  destination:
+    name: default
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    path: ./manifests
+    repoURL: https://github.com/Venugopal-Chavate/myassignment.git
+    targetRevision: HEAD
+  project: default
+  automated:
+    selfHeal: true
+    prune: true

@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: todos
+    tier: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+    name: http
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: todos
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3001
+    name: http
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  selector:
+    app: todos
+    tier: database
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+    name: mongodb
+  type: ClusterIP

@@ -21,7 +21,7 @@ resource "google_storage_bucket" "default" {
   name     = "${random_id.default.hex}-terraform-remote-backend"
   location = "US"
 
-  force_destroy               = false
+  force_destroy               = true
   public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 
@@ -51,4 +51,10 @@ module "create_cluster" {
   region             = var.region
   zone2              = var.zone_2
   location           = "JAPAN"
+}
+
+resource "google_compute_global_address" "argocd_ingress_ip" {
+  name = "argocd-ingress-ip"
+  address_type = "EXTERNAL"
+  ip_version = "IPV4"
 }
