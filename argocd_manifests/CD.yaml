@@ -11,6 +11,8 @@ spec:
     path: ./manifests
     repoURL: https://github.com/Venugopal-Chavate/myassignment.git
     targetRevision: HEAD
+    directory:
+      recurse: true
   project: default
   syncPolicy:  
     automated:

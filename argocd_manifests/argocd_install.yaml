@@ -21525,8 +21525,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: "argocd-ingress-ip"
   labels:
     app.kubernetes.io/component: repo-server
     app.kubernetes.io/name: argocd-repo-server
@@ -21549,15 +21547,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: "argocd-ingress-ip"
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: argocd-server
     app.kubernetes.io/part-of: argocd
   name: argocd-server
 spec:
-  type: LoadBalancer
   ports:
   - name: http
     port: 80

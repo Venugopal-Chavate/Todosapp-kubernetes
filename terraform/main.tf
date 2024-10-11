@@ -58,3 +58,9 @@ resource "google_compute_global_address" "argocd_ingress_ip" {
   address_type = "EXTERNAL"
   ip_version = "IPV4"
 }
+
+resource "google_compute_global_address" "todos_ingress_ip" {
+  name = "todos-ingress-ip"
+  address_type = "EXTERNAL"
+  ip_version = "IPV4"
+}
