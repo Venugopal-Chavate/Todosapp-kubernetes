@@ -13,7 +13,7 @@ spec:
     repoURL: https://github.com/Venugopal-Chavate/myassignment.git
     targetRevision: HEAD
   project: default
-  sync_Policy:  
+  syncPolicy:  
     automated:
       selfHeal: true
       prune: true
