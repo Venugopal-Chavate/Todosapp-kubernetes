@@ -51,5 +51,48 @@ module "create_cluster" {
   region             = var.region
   zone2              = var.zone_2
   location           = "JAPAN"
+  project_number     = var.project_number
+  project_id         = var.project_id
 }
 
+##############secret manager############################
+resource "google_secret_manager_secret" "my_secret_1" {
+  secret_id = "username"
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+resource "google_secret_manager_secret" "my_secret_2" {
+  secret_id = "password"
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+
+resource "google_secret_manager_secret" "my_secret_3" {
+  secret_id = "uri"
+  replication {
+    user_managed {
+      replicas {
+        location = var.region
+      }
+    }
+  }
+}
+##############secret manager############################
+#iam for accessing secrets
+resource "google_project_iam_member" "readsecrets" {
+  project = var.project_id
+  role    = "roles/secretmanager.secretAccessor"
+  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/todos.svc.id.goog/subject/ns/readonly-ns/sa/readonly-sa"
+
+}

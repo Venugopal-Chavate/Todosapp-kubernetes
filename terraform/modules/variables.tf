@@ -16,3 +16,9 @@ variable "cluster_name" {
 variable "zone2" {
   type        = string
 }
+variable "project_number" {
+  type        = string
+}
+variable "project_id" {
+  type        = string
+}

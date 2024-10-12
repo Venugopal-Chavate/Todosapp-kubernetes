@@ -27,3 +27,26 @@ variable "zone_2" {
   type        = string
   default     = "asia-northeast1-b"
 }
+
+variable "uri" {
+  type        = string
+  sensitive    = true
+}
+
+variable "username" {
+  type        = string
+  sensitive    = true
+}
+
+variable "password" {
+  type        = string
+  sensitive    = true
+}
+variable "project_id" {
+  type        = string
+  sensitive    = true
+}
+variable "project_number" {
+  type        = string
+  sensitive    = true
+}
