@@ -31,11 +31,11 @@ spec:
           name: http
         resources:
           requests:
-            cpu: "100m"
-            memory: "500Mi"
+            cpu: "200m"
+            memory: "900Mi"
           limits:
-            cpu: "100m"
-            memory: "500Mi"
+            cpu: "200m"
+            memory: "900Mi"
         
 ---
 apiVersion: apps/v1
