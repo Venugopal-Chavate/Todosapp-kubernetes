@@ -28,13 +28,13 @@ spec:
         volumeMounts:
         - name: mongodb-data
           mountPath: /data/db
-        # resources:
-        #   requests:
-        #     cpu: "250m"
-        #     memory: "0.5Gi"
-        #   limits:
-        #     cpu: "250m"
-        #     memory: "0.5Gi"
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "0.5Gi"
+          limits:
+            cpu: "250m"
+            memory: "0.5Gi"
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
