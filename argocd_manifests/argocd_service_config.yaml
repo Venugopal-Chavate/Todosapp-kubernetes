@@ -1,68 +1,30 @@
-# External Service
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: argocd-server-external
-  namespace: argocd
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
-    cloud.google.com/backend-config: '{"ports": {"http":"argocd-backend-config"}}'
-spec:
-  type: ClusterIP
-  ports:
-  - name: http
-    port: 80
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app.kubernetes.io/name: argocd-server
----
-# Backend Config
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
-metadata:
-  name: argocd-backend-config
-  namespace: argocd
-spec:
-  healthCheck:
-    checkIntervalSec: 30
-    timeoutSec: 5
-    healthyThreshold: 1
-    unhealthyThreshold: 2
-    type: HTTP
-    requestPath: /healthz
-    port: 8080
----
-# Frontend Config
-apiVersion: networking.gke.io/v1beta1
-kind: FrontendConfig
-metadata:
-  name: argocd-frontend-config
-  namespace: argocd
-spec:
-  redirectToHttps:
-    enabled: true
----
-#ingress
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd
-  namespace: argocd
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: argocd-ingress-ip
-    networking.gke.io/managed-certificates: argocd-example-cert
-    networking.gke.io/v1beta1.FrontendConfig: argocd-frontend-config
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server-external
-                port:
-                  number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: IngressClass
+# metadata:
+#   name: argocd-nginx
+# spec:
+#   controller: k8s.io/ingress-nginx
+# ---
+# # ArgoCD Ingress
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd-ingress
+#   namespace: argocd
+#   annotations:
+#     kubernetes.io/ingress.class: "argocd-nginx"
+#     #kubernetes.io/ingress.global-static-ip-name: "argocd-ingress-ip"  
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+# spec:
+#   ingressClassName: argocd-nginx
+#   rules:
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: argocd-server 
+#                 port:
+#                   number: 80 
