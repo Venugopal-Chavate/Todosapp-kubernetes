@@ -32,10 +32,10 @@ spec:
         resources:
           requests:
             cpu: "100"
-            memory: "256Mi"
+            memory: "500Mi"
           limits:
             cpu: "100m"
-            memory: "256Mi"
+            memory: "500Mi"
         
 ---
 apiVersion: apps/v1
