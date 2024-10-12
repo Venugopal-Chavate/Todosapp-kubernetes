@@ -8,7 +8,9 @@ resource "google_container_cluster" "create_cluster" {
   workload_identity_config {
       workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
     }
+  
   addons_config {
+    
     http_load_balancing{
       disabled = false
     }
