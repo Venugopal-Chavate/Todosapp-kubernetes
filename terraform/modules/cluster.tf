@@ -8,7 +8,20 @@ resource "google_container_cluster" "create_cluster" {
   deletion_protection = false
   workload_identity_config {workload_pool = "${data.google_project.project.project_id}.svc.id.goog"}
   secret_manager_config{enabled = true}
-  cluster_autoscaling { autoscaling_profile = "OPTIMIZE_UTILIZATION" }
+  cluster_autoscaling { 
+    autoscaling_profile = "OPTIMIZE_UTILIZATION" 
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      minimum = 12
+      maximum = 24
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum = 24
+      maximum = 64
+    }
+  }
   logging_config {enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS", "APISERVER", "CONTROLLER_MANAGER", "SCHEDULER"]}
   remove_default_node_pool = true
   addons_config {
