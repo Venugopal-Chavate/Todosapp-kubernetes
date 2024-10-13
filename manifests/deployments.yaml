@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/frontend:v0.1.0
+        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/frontend:latest
         ports:
         - containerPort: 3000
           name: http
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/backend:v0.1.0
+        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/backend:latest
         ports:
         - containerPort: 3001
           name: http
