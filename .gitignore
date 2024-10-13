@@ -19,3 +19,4 @@ tfplan
 *.swp
 *.swo
 get_helm.sh
+gha-creds-*.json
