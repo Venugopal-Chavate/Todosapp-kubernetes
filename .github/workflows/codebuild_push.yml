@@ -67,6 +67,6 @@ jobs:
     - name: Update_version
       id: update_version
       run: |
-          sed -i.bak "s/CURRENT_VERSION='v[0-9]*\.[0-9]*\.[0-9]*'/CURRENT_VERSION='${{ steps.increment-git-tag.outputs.git-tag }}'/" "$FILE"
-          sed -i.bak "s/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\(backend\|frontend\):v[0-9]*\.[0-9]*\.[0-9]*/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\1:${{ steps.increment-git-tag.outputs.git-tag }}/" "$FILE"
+          sed -i.bak "s/CURRENT_VERSION='v[0-9]*\.[0-9]*\.[0-9]*'/CURRENT_VERSION='${{ steps.increment-git-tag.outputs.git-tag }}'/" "./scripts/version_update.sh"
+          sed -i.bak "s/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\(backend\|frontend\):v[0-9]*\.[0-9]*\.[0-9]*/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\1:${{ steps.increment-git-tag.outputs.git-tag }}/" "./manifests/deployments.yaml"
     - uses: stefanzweifel/git-auto-commit-action@v5
