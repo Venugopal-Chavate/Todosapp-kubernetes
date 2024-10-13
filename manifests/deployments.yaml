@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/frontend:latest
+        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/frontend:v0.1.0
         ports:
         - containerPort: 3000
           name: http
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/backend:latest
+        image: asia-northeast1-docker.pkg.dev/sonic-arcadia-437913-c5/todos/backend:v0.1.0
         ports:
         - containerPort: 3001
           name: http
@@ -76,3 +76,38 @@ spec:
           limits:
             cpu: "200m"
             memory: "512Mi"
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50
