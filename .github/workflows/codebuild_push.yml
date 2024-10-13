@@ -67,7 +67,7 @@ jobs:
     - name: Update_version
       id: update_version
       run: |
-          sed -i "s/CURRENT_VERSION='v[0-9]*\.[0-9]*\.[0-9]*'/CURRENT_VERSION='${{ steps.increment-git-tag.outputs.git-tag }}'/" "./scripts/version_update.sh"
+          sed -i -E "s/(CURRENT_VERSION=')[^']*(')/\1${{ steps.increment-git-tag.outputs.git-tag }}\2/" "./scripts/version_update.sh"
           sed -i "s/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\(backend\|frontend\):v[0-9]*\.[0-9]*\.[0-9]*/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\1:${{ steps.increment-git-tag.outputs.git-tag }}/" "./manifests/deployments.yaml"
           git tag ${{ steps.increment-git-tag.outputs.git-tag }}
           git push origin ${{ steps.increment-git-tag.outputs.git-tag }}
