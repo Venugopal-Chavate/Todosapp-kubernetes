@@ -18,3 +18,4 @@ tfplan
 .idea/
 *.swp
 *.swo
+get_helm.sh

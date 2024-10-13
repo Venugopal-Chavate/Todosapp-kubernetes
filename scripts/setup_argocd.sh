@@ -1,6 +1,6 @@
 kubectl apply -f ./argocd_manifests/argo_namespace.yaml
 kubectl -n argocd apply -f ./argocd_manifests/argocd_install.yaml
-sleep 10
+sleep 20
 echo "
 Install argoCD cli 
 curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
