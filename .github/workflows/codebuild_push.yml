@@ -2,7 +2,7 @@ name: Build and Push Python Image to Google Cloud Platform
 on:
   push:
     branches: [ main ] 
-    paths: ['todos_app/**']
+  #  paths: ['todos_app/**']
 
 permissions:
   contents: 'write'
