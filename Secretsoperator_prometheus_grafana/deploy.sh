@@ -13,3 +13,6 @@ kubectl get svc grafana | awk '/grafana/{print $4}'
 kubectl get svc prometheus-server | awk '/prometheus-server/{print $4}'
 #kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 #
+
+helm repo add external-secrets https://charts.external-secrets.io
+helm install external-secrets external-secrets/external-secrets
