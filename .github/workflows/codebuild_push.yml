@@ -5,8 +5,9 @@ on:
     paths: ['todos_app/**']
 
 permissions:
-  contents: 'read'
+  contents: 'write'
   id-token: 'write'
+  pull-requests: write
 
 jobs:
   build-push-gcr:
@@ -19,6 +20,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - uses: google-github-actions/auth@v2
       with:
@@ -61,8 +64,9 @@ jobs:
         docker push asia-northeast1-docker.pkg.dev/$PROJECT_ID/todos/$BACKEND_IMAGE_NAME:latest
         docker push asia-northeast1-docker.pkg.dev/$PROJECT_ID/todos/$BACKEND_IMAGE_NAME:$GIT_TAG
 
-    # - name: Update_version
-    #   id: update_version
-    #   run: |
-    #       sed -i.bak "s/CURRENT_VERSION='v[0-9]*\.[0-9]*\.[0-9]*'/CURRENT_VERSION='${{ steps.increment-git-tag.outputs.git-tag }}'/" "$FILE"
-    #       sed -i.bak "s/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\(backend\|frontend\):v[0-9]*\.[0-9]*\.[0-9]*/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\1:${{ steps.increment-git-tag.outputs.git-tag }}/" "$FILE"
+    - name: Update_version
+      id: update_version
+      run: |
+          sed -i.bak "s/CURRENT_VERSION='v[0-9]*\.[0-9]*\.[0-9]*'/CURRENT_VERSION='${{ steps.increment-git-tag.outputs.git-tag }}'/" "$FILE"
+          sed -i.bak "s/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\(backend\|frontend\):v[0-9]*\.[0-9]*\.[0-9]*/image: asia-northeast1-docker.pkg.dev\/sonic-arcadia-437913-c5\/todos\/\1:${{ steps.increment-git-tag.outputs.git-tag }}/" "$FILE"
+    - uses: stefanzweifel/git-auto-commit-action@v5
