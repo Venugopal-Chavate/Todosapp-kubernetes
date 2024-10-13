@@ -30,6 +30,12 @@ resource "google_container_cluster" "create_cluster" {
     network_policy_config {disabled = false}
     cloudrun_config {disabled = true}
   }
+  monitoring_config{
+    enable_components = []
+    managed_prometheus {
+      enabled = false
+    }
+  }
 }
 resource "google_container_node_pool" "primary_nodes" {
   name       = "${var.cluster_name}-node-pool"
