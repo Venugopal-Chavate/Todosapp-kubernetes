@@ -6,11 +6,10 @@ const routes = require("./routes");
 const username = process.env.MONGO_USERNAME;
 const password = process.env.MONGO_PASSWORD;
 const uri = process.env.MONGODB_URI
-main().catch((err) => console.log(err) && console.log(`Server is ${uri}${username}${password}`));
+main().catch((err) => console.log(err));
 
 async function main() {
-  console.log(`Server is ${uri}${username}${password}`);
-  await mongoose.connect("mongodb://mongo-service:27017/todos", {
+  await mongoose.connect("mongodb://mongodb-service:27017/todos", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
@@ -21,6 +20,5 @@ async function main() {
 
   app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);
-    console.log(`Server is ${uri}${username}${password}`);
   });
 }
