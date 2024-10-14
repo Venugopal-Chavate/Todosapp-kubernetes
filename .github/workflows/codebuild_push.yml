@@ -44,7 +44,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./scripts/version_update.sh -v major
+        bash ./scripts/version_update.sh -v patch
 
     - name: Configure Docker Client
       run: |-
