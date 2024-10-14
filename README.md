@@ -86,8 +86,7 @@ This project sets up:
       ![alt text](./docs/images/terrasnippet2.png)
 
    to
-
-      ![alt text](./docs/images/terrasnippet1.png)
+      ![alt text](./docs/images/terrasnippet2.png)
 
 14. Apply Terraform configuration:
    ```
@@ -144,7 +143,3 @@ For more detailed information about each component of this project, please refer
 - [Kubernetes Implementation](docs/kubernetes-implementation.md)
 - [Prometheus and Grafana Setup](docs/prometheus-grafana.md)
 - [Logging](docs/logging.md)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
