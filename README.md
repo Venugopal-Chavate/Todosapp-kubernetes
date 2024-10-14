@@ -89,7 +89,6 @@ This project sets up:
 
       ![alt text](./docs/images/terrasnippet1.png)
 
-
 14. Apply Terraform configuration:
    ```
    terraform apply #Note: creates iam policy for gke service readonly to read secrets from secrets manager
