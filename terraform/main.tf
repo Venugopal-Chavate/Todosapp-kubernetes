@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "google" {
-  project = "sonic-arcadia-437913-c5"
-  region  = "asia-northeast1"
-  zone    = "asia-northeast1-c"
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 ##############store state in cloud bucket#############
 resource "random_id" "default" {
@@ -21,7 +21,7 @@ resource "google_storage_bucket" "default" {
   name     = "${random_id.default.hex}-terraform-remote-backend"
   location = "US"
 
-  force_destroy               = false
+  force_destroy               = true
   public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 
@@ -50,7 +50,7 @@ module "create_cluster" {
   zone               = var.zone
   region             = var.region
   zone2              = var.zone_2
-  location           = "JAPAN"
+  location           = var.location
   project_number     = var.project_number
   project_id         = var.project_id
 }
@@ -91,8 +91,8 @@ resource "google_secret_manager_secret" "my_secret_3" {
 ##############secret manager############################
 #iam for accessing secrets
 resource "google_project_iam_member" "readsecrets" {
-  project = var.project_id
-  role    = "roles/secretmanager.secretAccessor"
-  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
+ project = var.project_id
+ role    = "roles/secretmanager.secretAccessor"
+ member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
 
 }

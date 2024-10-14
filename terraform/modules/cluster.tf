@@ -13,13 +13,13 @@ resource "google_container_cluster" "create_cluster" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum = 12
-      maximum = 24
+      minimum = 6
+      maximum = 12
     }
     resource_limits {
       resource_type = "memory"
-      minimum = 24
-      maximum = 64
+      minimum = 12
+      maximum = 32
     }
   }
   logging_config {enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS", "APISERVER", "CONTROLLER_MANAGER", "SCHEDULER"]}
@@ -45,7 +45,7 @@ resource "google_container_node_pool" "primary_nodes" {
   node_config {
     disk_size_gb = 20
     disk_type    = "pd-standard"
-    machine_type = "e2-large"
+    machine_type = "e2-medium"
 
     # Add workload identity service account
     workload_metadata_config {

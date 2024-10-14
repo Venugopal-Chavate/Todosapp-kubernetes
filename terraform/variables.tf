@@ -13,7 +13,7 @@ variable "zone" {
 variable "location" {
   description = "The location to deploy resources"
   type        = string
-  default     = "US"
+  default     = "JAPAN"
 }
 
 variable "cluster_name" {
