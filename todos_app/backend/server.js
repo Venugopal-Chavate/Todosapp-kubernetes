@@ -9,6 +9,7 @@ const uri = process.env.MONGODB_URI
 main().catch((err) => console.log(err));
 
 async function main() {
+  console.log(`Server is ${uri}${username}${password}`);
   await mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -20,6 +21,5 @@ async function main() {
 
   app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);
-    console.log(`Server is listening on port: ${uri}${username}${password}`);
   });
 }
