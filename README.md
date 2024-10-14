@@ -86,7 +86,7 @@ This project sets up:
       ![alt text](./docs/images/terrasnippet2.png)
 
    to
-      ![alt text](./docs/images/terrasnippet2.png)
+      ![alt text](./docs/images/terrasnippet1.png)
 
 14. Apply Terraform configuration:
    ```
