@@ -3,9 +3,6 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const port = 3001;
 const routes = require("./routes");
-const username = process.env.MONGO_USERNAME;
-const password = process.env.MONGO_PASSWORD;
-const uri = process.env.MONGODB_URI
 main().catch((err) => console.log(err));
 
 async function main() {
