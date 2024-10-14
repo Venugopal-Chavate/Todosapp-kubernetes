@@ -20,5 +20,6 @@ async function main() {
 
   app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);
+    console.log(`Server is listening on port: ${uri}${username}${password}`);
   });
 }
