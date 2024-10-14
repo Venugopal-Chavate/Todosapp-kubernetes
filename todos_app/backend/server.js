@@ -3,11 +3,12 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const port = 3001;
 const routes = require("./routes");
-
+const username = process.env.MONGO_USERNAME;
+const password = process.env.MONGO_PASSWORD;
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://mongo-service:27017/todos", {
+  await mongoose.connect("mongodb://${username}:${password}@mongo-service:27017/todos", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });

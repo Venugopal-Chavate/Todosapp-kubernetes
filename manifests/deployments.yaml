@@ -69,6 +69,16 @@ spec:
             secretKeyRef:
               name: mongodb-credentials
               key: uri
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-credentials
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-credentials
+              key: password
         resources:
           requests:
             cpu: "200m"

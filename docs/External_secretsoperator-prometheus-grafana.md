@@ -14,7 +14,7 @@ We use Prometheus for metrics collection and Grafana for visualization. Both are
 ## Installation
 The below script installs the tools under consideration using helm, outputs grafana credentials and End points using a Loadbalancer:
 ```
-./Secretsoperator_prometheus_grafana/deploy.sh
+./secretsoperator_prometheus_grafana/deploy.sh
 ```
 
 If you do not want to access the end points via a load balancer, you can use it via port forward and remove exposition to public.
@@ -44,7 +44,7 @@ To add the Prometheus data source:
 
 ## Custom Dashboard
 
-We've created a custom dashboard to monitor our application. The dashboard configuration is stored in `./Secretsoperator_prometheus_grafana/Grafana_Dashboard/grafana_hpa_observability.json`. To import this dashboard:
+We've created a custom dashboard to monitor our application. The dashboard configuration is stored in `./secretsoperator_prometheus_grafana/Grafana_Dashboard/grafana_hpa_observability.json`. To import this dashboard:
 
 1. Access the Grafana UI
 2. Click the "+" icon in the left sidebar

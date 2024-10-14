@@ -9,6 +9,11 @@ This project sets up:
     - External Secrets Operator.
     ![alt text](./docs/images/image.png)
 
+### Note 1: 
+Ideally I would seperate and maintain the contents of the ./manifests, ./terraform and application in different repositories to have better control of the components. But my intention here was to create a singular deployable repo. 
+### Note 2:
+The Terraform infrastructure will be created in a default VPC. please modify your terraform scripts accordingly by creating seperate VPC, Subnets and Gateways if you want to deploy in a seperate VPC.
+
 ## Quick Setup
 
 1. Clone this repository:
@@ -28,9 +33,10 @@ This project sets up:
     region = ""
     project_number = ""
     project_id = ""
-    password = ""
-    username = ""
-    uri = "mongodb://yourusername:yourpassword@mongo-service:27017/todos?authSource=admin"
+    password = "password"
+    username = "username"
+    uri = "mongodb://username:password@mongo-service:27017/todos?authSource=admin"
+    # For a quick setup
     zone = ""    #your first zone
     zone_2 = ""   ##your second zone
     cluster_name = ""
@@ -75,15 +81,15 @@ This project sets up:
 
 11. Deploy External secrets operator, prometheus and grafana.
     ```
-    ./Secretsoperator_prometheus_grafana/deploy.sh
+    ./secretsoperator_prometheus_grafana/deploy.sh
     ```
 12. Uncomment this section of ./terraform/main.tf 
 
-      ![alt text](./docs/images/terrasnippet2.png)
+   ![alt text](./docs/images/terrasnippet2.png)
 
    to
       
-      ![alt text](./docs/images/terrasnippet1.png)
+   ![alt text](./docs/images/terrasnippet1.png)
 
 13. Apply Terraform configuration:
    ```
@@ -100,7 +106,7 @@ This project sets up:
 
 15. login to grafana and create dashboard. Use the json file below to create a dashboard for grafana.
    ```
-   ./Secretsoperator_prometheus_grafana/Grafana_Dashboard/grafana_hpa_observability.json
+   ./secretsoperator_prometheus_grafana/Grafana_Dashboard/grafana_hpa_observability.json
    ```
    paste the above while creating the grafana dashboard.
 
@@ -136,7 +142,7 @@ This project sets up:
 - `/manifests`: Contains Kubernetes manifests
 - `/argocd_manifests`: Contains ArgoCD configurations
 - `/.github/workflows`: Contains CI pipeline configurations (GitHub Actions)
-- `/Secretsoperator_prometheus_rgafana`: Contains External operator, Prometheus and Grafana configurations
+- `/secretsoperator_prometheus_rgafana`: Contains External operator, Prometheus and Grafana configurations
 - `/docs`: Detailed documentation for each component
 - `/scripts`: Contains automation supports
 
