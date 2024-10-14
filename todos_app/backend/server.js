@@ -5,10 +5,11 @@ const port = 3001;
 const routes = require("./routes");
 const username = process.env.MONGO_USERNAME;
 const password = process.env.MONGO_PASSWORD;
+const uri = process.env.MONGODB_URI
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://${username}:${password}@mongo-service:27017/todos", {
+  await mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
