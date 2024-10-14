@@ -21,7 +21,7 @@ resource "google_storage_bucket" "default" {
   name     = "${random_id.default.hex}-terraform-remote-backend"
   location = "US"
 
-  force_destroy               = true
+  force_destroy               = false
   public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 
@@ -90,9 +90,9 @@ resource "google_secret_manager_secret" "my_secret_3" {
 }
 ##############secret manager############################
 #iam for accessing secrets
-resource "google_project_iam_member" "readsecrets" {
- project = var.project_id
- role    = "roles/secretmanager.secretAccessor"
- member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
+# resource "google_project_iam_member" "readsecrets" {
+#  project = var.project_id
+#  role    = "roles/secretmanager.secretAccessor"
+#  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
 
-}
+# }

@@ -9,7 +9,9 @@ sleep 30
 kubectl patch svc grafana -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl patch svc prometheus-server -p '{"spec": {"type": "LoadBalancer"}}'
 sleep 40
+echo"Grafana is now availale at:"
 kubectl get svc grafana | awk '/grafana/{print $4}'
+echo"Prometheus is now availale at:"
 kubectl get svc prometheus-server | awk '/prometheus-server/{print $4}'
 #kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 #

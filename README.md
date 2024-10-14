@@ -49,7 +49,7 @@ This project sets up:
    ``` 
 5. Initialize Terraform:
    ```
-   terraform init -migrate-state #this will sync up your local and remote state storage
+   terraform init
    ```
 
 6. Plan Terraform configuration:
@@ -68,30 +68,36 @@ This project sets up:
    gcloud container clusters get-credentials your-cluster-name --zone your-zone --project your-project-id
    ```
 
-10. Setup ArgoCD using the below acript and get the login creds from the script outpus:
+10. Setup ArgoCD using the below script and get the login creds from the script outpus:
    ```
    ./scripts/setup_argocd.sh 
    ```
 
-11. Create ArgoCD workload:
-   ```
-   kubectl apply -f ./argocd_manifests/CD.yaml #adjust to your needs update targets then apply. verify your deployment in GCP
-   ```
-12. Deploy External secrets operator, prometheus and grafana.
+11. Deploy External secrets operator, prometheus and grafana.
     ```
     ./Secretsoperator_prometheus_grafana/deploy.sh
     ```
-13. Uncomment this section of ./terraform/main.tf 
+12. Uncomment this section of ./terraform/main.tf 
 
       ![alt text](./docs/images/terrasnippet2.png)
 
    to
+      
       ![alt text](./docs/images/terrasnippet1.png)
 
-14. Apply Terraform configuration:
+13. Apply Terraform configuration:
    ```
+   cd ./terraform
+   terraform init -migrate-state #this will sync up your local and remote state storage
    terraform apply #Note: creates iam policy for gke service readonly to read secrets from secrets manager
+   cd ..
    ```
+
+14. Create ArgoCD workload:
+   ```
+   kubectl apply -f ./argocd_manifests/CD.yaml #adjust to your needs update targets then apply. verify your deployment in GCP
+   ```
+
 15. login to grafana and create dashboard. Use the json file below to create a dashboard for grafana.
    ```
    ./Secretsoperator_prometheus_grafana/Grafana_Dashboard/grafana_hpa_observability.json
@@ -104,7 +110,7 @@ This project sets up:
    - create a code secret for Actions called "SA" the value is your service account
    - create a code secret for Actions called "WIP" the value is your WorkLoadIdentityProvider(check out https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers tosetup your workload identity provider)
 
-14. 
+
 ## Development Setup
 
 1. Install necessary tools:
@@ -141,5 +147,12 @@ For more detailed information about each component of this project, please refer
 - [Terraform Implementation](docs/terraform-implementation.md)
 - [ArgoCD Implementation](docs/argocd-implementation.md)
 - [Kubernetes Implementation](docs/kubernetes-implementation.md)
-- [Prometheus and Grafana Setup](docs/prometheus-grafana.md)
+- [Enternal Secrets Operator, Prometheus and Grafana Setup](docs/External_secretsoperator-prometheus-grafana.md)
 - [Logging](docs/logging.md)
+
+## Possible improvements
+
+- Implement health checks for your applications
+- Use kustomize or helm for managing environment-specific configurations
+- Regularly audit and rotate ArgoCD credentials
+- I also intend to update this with fluentd based logging to have a first level filter.
