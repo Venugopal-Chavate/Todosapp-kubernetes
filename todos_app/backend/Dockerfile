@@ -1,13 +1,11 @@
-FROM node:10-alpine
+FROM node:8-alpine
 
-WORKDIR /usr/src/app
+ADD . app/
 
-COPY package*.json ./
+WORKDIR /app
 
-RUN npm install
+# https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package
+# restore only Dependences, nor DevDependencies , in package.json
+RUN npm i --only=production
 
-COPY . .
-
-EXPOSE 3001
-
-CMD ["node", "server.js"]
+CMD sleep 5 && node src/loader.js
