@@ -64,6 +64,7 @@ jobs:
         docker push asia-northeast1-docker.pkg.dev/$PROJECT_ID/todos/$BACKEND_IMAGE_NAME:latest
         docker push asia-northeast1-docker.pkg.dev/$PROJECT_ID/todos/$BACKEND_IMAGE_NAME:$GIT_TAG
 
+        
     - name: Update_version
       id: update_version
       run: |
