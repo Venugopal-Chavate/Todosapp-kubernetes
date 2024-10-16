@@ -46,6 +46,7 @@ jobs:
       run: |
         bash ./scripts/version_update.sh -v patch
 
+        
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
