@@ -4,6 +4,7 @@ on:
     branches: [ main ] 
     #paths: ['todos_app/**']
 
+    
 permissions:
   contents: 'write'
   id-token: 'write'
