@@ -25,7 +25,7 @@ jobs:
 
     - uses: google-github-actions/auth@v2
       with:
-        workload_identity_provider: 'https://iam.googleapis.com/projects/354499143468/locations/global/workloadIdentityPools/github/providers/github'
+        workload_identity_provider: 'projects/354499143468/locations/global/workloadIdentityPools/github/providers/github'
         service_account: 'github@sonic-arcadia-437913-c5.iam.gserviceaccount.com'
         project_id: 'sonic-arcadia-437913-c5'
 
