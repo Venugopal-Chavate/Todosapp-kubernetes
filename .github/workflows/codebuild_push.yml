@@ -28,6 +28,8 @@ jobs:
         workload_identity_provider: 'projects/354499143468/locations/global/workloadIdentityPools/github/providers/github'
         service_account: 'github@sonic-arcadia-437913-c5.iam.gserviceaccount.com'
         project_id: 'sonic-arcadia-437913-c5'
+        token_format: 'access_token'
+        create_credentials_file: true
 
     - name: 'Set up Cloud SDK'
       uses: google-github-actions/setup-gcloud@v2
