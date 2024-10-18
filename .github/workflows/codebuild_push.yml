@@ -8,6 +8,7 @@ permissions:
   id-token: 'write'
   pull-requests: write
 
+  
 jobs:
   build-push-gcr:
     name: Build and Push to GCP
