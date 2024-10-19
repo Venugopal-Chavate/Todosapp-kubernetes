@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: ./manifests
-    repoURL: https://github.com/Venugopal-Chavate/myassignment.git
+    repoURL: https://github.com/Venugopal-Chavate/Todosapp-kubernetes.git
     targetRevision: HEAD
     directory:
       recurse: true
