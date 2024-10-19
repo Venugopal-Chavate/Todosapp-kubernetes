@@ -74,16 +74,16 @@ spec:
             configMapKeyRef:
               name: todosconfig
               key: API_PORT
-        - name: MONGO_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-credentials
-              key: username
-        - name: MONGO_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mongodb-credentials
-              key: password
+        # - name: MONGO_USERNAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: mongodb-credentials
+        #       key: username
+        # - name: MONGO_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: mongodb-credentials
+        #       key: password
         resources:
           requests:
             cpu: "200m"
