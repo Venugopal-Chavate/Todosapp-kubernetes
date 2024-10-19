@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
+  type: LoadBalancer
   selector:
     app: todos
     tier: frontend
@@ -18,6 +19,7 @@ kind: Service
 metadata:
   name: backend-service
 spec:
+  type: LoadBalancer
   selector:
     app: todos
     tier: backend
