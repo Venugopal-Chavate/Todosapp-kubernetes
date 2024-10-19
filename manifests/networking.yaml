@@ -26,23 +26,23 @@ spec:
             port:
               number: 80
 ---
-# apiVersion: networking.k8s.io/v1
-# kind: NetworkPolicy
-# metadata:
-#   name: mongodb-network-policy
-# spec:
-#   podSelector:
-#     matchLabels:
-#       app: todos
-#       tier: database
-#   policyTypes:
-#   - Ingress
-#   ingress:
-#   - from:
-#     - podSelector:
-#         matchLabels:
-#           app: todos
-#           tier: backend
-#     ports:
-#     - protocol: TCP
-#       port: 27017
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mongodb-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: todos
+      tier: database
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: todos
+          tier: backend
+    ports:
+    - protocol: TCP
+      port: 27017
