@@ -5,10 +5,10 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     ports:
-      - 3003:3003
+      - 3001:3001
     environment:
       MONGO_URL: mongodb
-      API_PORT: 3003
+      API_PORT: 3001
     
     depends_on: 
       - mongodb
