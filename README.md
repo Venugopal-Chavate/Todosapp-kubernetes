@@ -35,7 +35,7 @@ The Terraform infrastructure will be created in a default VPC. please modify you
     project_id = ""
     password = "password"
     username = "username"
-    uri = "mongodb://username:password@mongo-service:27017/todos?authSource=admin"
+    uri = "mongodb://mongo-service:27017/todos"
     # For a quick setup
     zone = ""    #your first zone
     zone_2 = ""   ##your second zone
@@ -132,7 +132,7 @@ The Terraform infrastructure will be created in a default VPC. please modify you
    ```
 
 3. For the application, we refrenced the below todos app:
-   - [Todos](https://github.com/knaopel/docker-frontend-backend-db/tree/master)
+   - [Todos](https://github.com/Fabioh/todo-app)
    - The app had simple docker-compose.yaml based build with frontend, backend and db.
    - Certain modifications had to be made in the app, in order to use the app with k8s [like updating the db urls].
 
