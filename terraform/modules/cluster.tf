@@ -13,13 +13,13 @@ resource "google_container_cluster" "create_cluster" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum = 6
-      maximum = 12
+      minimum = 12
+      maximum = 24
     }
     resource_limits {
       resource_type = "memory"
-      minimum = 12
-      maximum = 32
+      minimum = 14
+      maximum = 64
     }
   }
   logging_config {enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS", "APISERVER", "CONTROLLER_MANAGER", "SCHEDULER"]}
