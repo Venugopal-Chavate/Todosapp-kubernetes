@@ -90,9 +90,9 @@ resource "google_secret_manager_secret" "my_secret_3" {
 }
 ##############secret manager############################
 #iam for accessing secrets
-# resource "google_project_iam_member" "readsecrets" {
-#  project = var.project_id
-#  role    = "roles/secretmanager.secretAccessor"
-#  member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
+resource "google_project_iam_member" "readsecrets" {
+ project = var.project_id
+ role    = "roles/secretmanager.secretAccessor"
+ member  = "principal://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.project_id}.svc.id.goog/subject/ns/default/sa/readonly-sa"
 
-# }
+}
