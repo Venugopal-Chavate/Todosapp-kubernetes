@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: todosconfig
 data:
-  MONGO_URL : "mongo-service"
+  MONGO_URL : "mongo-service:27017"
   API_PORT : "3001"
 
   

@@ -35,17 +35,6 @@ spec:
           limits:
             cpu: "250m"
             memory: "0.5Gi"
-        # env:
-        # - name: MONGO_INITDB_ROOT_USERNAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: mongodb-credentials
-        #       key: username
-        # - name: MONGO_INITDB_ROOT_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: mongodb-credentials
-        #       key: password
   volumeClaimTemplates:
   - metadata:
       name: mongodb-data
