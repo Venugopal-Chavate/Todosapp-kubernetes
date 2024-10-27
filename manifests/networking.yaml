@@ -21,7 +21,7 @@ spec:
           service:
             name: backend-service
             port:
-              number: 3000
+              number: 80
       - path: /()(.*)  # This matches the root path and anything after it
         pathType: ImplementationSpecific
         backend:
